@@ -1,2 +1,11 @@
 @import "tailwindcss";
-/* @import "tailwindcss/preflight"; */
+@tailwind utilities;
+
+:root {
+  --color-primary: #85bb65;
+  --color-secondary: #384f2a;
+  --color-textPrimary: #374653;
+  --color-textSecondary: #79838c;
+  --color-warning: #ff7b00;
+  --color-warningLight: #fff4e9;
+}
