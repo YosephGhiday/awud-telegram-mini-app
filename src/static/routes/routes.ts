@@ -9,11 +9,11 @@ interface PageRoute {
 
 const routes: PageRoute[] = [
   {
-    path: "/",
+    path: "/awud-telegram-mini-app/",
     element: GetStartedPage,
   },
   {
-    path: "/login",
+    path: "/awud-telegram-mini-app/login",
     element: LoginPage,
   },
 ];

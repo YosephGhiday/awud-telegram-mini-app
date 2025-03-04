@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // base: "/awud-telegram-mini-app/",
+  base: "/awud-telegram-mini-app/",
   build: {
     outDir: "build",
   },

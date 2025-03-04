@@ -15,7 +15,7 @@ const InputLayout = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="flex items-center">
           <div className="w-full grid grid-cols-1">
             {label !== undefined && (
-              <label className="text-[#374653] font-semibold mb-1.5 text-sm">
+              <label className="text-[#374653] font-semibold mb-1.5 text-">
                 {label}
               </label>
             )}
