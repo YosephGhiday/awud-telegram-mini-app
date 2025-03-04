@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     const decryptedUser: UserResponse = JSON.parse(
-      decryptData(data!, process.env.VITE_KEY!)
+      decryptData(data!, import.meta.env.VITE_KEY!)
     );
     setToken(token);
     setUser(decryptedUser!);
