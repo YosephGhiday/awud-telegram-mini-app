@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GetStartedImage from "../assets/images/GetStartedImage.png";
 import { ArrowRight } from "lucide-react";
 
@@ -19,10 +20,13 @@ export default function GetStartedPage() {
         </p>
       </span>
 
-      <button className="bg-[#85BB65] text-lg text-white rounded-md p-3 flex gap-2 items-center">
+      <Link
+        to="/login"
+        className="bg-[#85BB65] text-lg text-white rounded-md p-3 flex gap-2 items-center"
+      >
         Get Started
         <ArrowRight size={16} />
-      </button>
+      </Link>
     </div>
   );
 }
