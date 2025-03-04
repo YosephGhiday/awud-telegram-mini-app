@@ -22,7 +22,7 @@ const authApiService = new AuthApiService();
 export default function LoginPage() {
   const navigate = useNavigate();
   const request = useResponse<LoginResponse>();
-  const { updateUserData } = useAuth();
+  // const { updateUserData } = useAuth();
 
   const {
     handleSubmit,
@@ -42,7 +42,7 @@ export default function LoginPage() {
         //   });
       },
       success(data: LoginResponse) {
-        updateUserData(data);
+        // updateUserData(data);
         navigate("/", { replace: true });
       },
     });
