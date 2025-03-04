@@ -21,7 +21,7 @@ export default function GetStartedPage() {
       </span>
 
       <Link
-        to="/login"
+        to="/awud-telegram-mini-app/login"
         className="bg-[#85BB65] text-lg text-white rounded-md p-3 flex gap-2 items-center"
       >
         Get Started
