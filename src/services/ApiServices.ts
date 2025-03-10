@@ -7,12 +7,11 @@ import { NetworkResponseData } from "../static/interfaces/NetworkResponseData";
 export const backendApi = `${import.meta.env.VITE_BASE_URL}/api/v1/`;
 export const imageRoute = `${import.meta.env.VITE_BASE_URL}/images`;
 
-
 let api = axios.create({
   baseURL: backendApi,
   headers: {
     "Content-Type": "application/json",
-    "Accept": "application/json",
+    Accept: "application/json",
   },
 });
 

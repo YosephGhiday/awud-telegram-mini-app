@@ -1,8 +1,5 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoginResponse from "@/features/auth/data/LoginResponse";
-import AuthApiService from "@/features/auth/services/AuthApiService";
-import useResponse from "@/services/useResponse";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/Input";
 import { useAuth } from "@/context/AuthContext";
@@ -16,7 +13,7 @@ const schema = yup
     phoneNumber: yup.string().required("Phone number is required!"),
     firstName: yup.string().required("First name is required!"),
     lastName: yup.string().required("Last name is required!"),
-    userName: yup.string().required("Username is required!"),
+    // userName: yup.string().required("Username is required!"),
     email: yup
       .string()
       .email("Please enter a valid email")
@@ -26,12 +23,9 @@ const schema = yup
   })
   .required();
 
-const authApiService = new AuthApiService();
-
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const request = useResponse<LoginResponse>();
-  const { updateUserData } = useAuth();
+  const { setSignUpRequestUserData, setHasForgottenPassword } = useAuth();
 
   const {
     handleSubmit,
@@ -44,20 +38,9 @@ export default function SignUpPage() {
 
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
-    request.handler(() => authApiService.signup(values), {
-      error(errorMessage) {
-        console.log(errorMessage, "error");
-        //   ShowToast({
-        //     type: "error",
-        //     message: errorMessage,
-        //   });
-      },
-      success(data: LoginResponse) {
-        console.log(data, "success");
-        updateUserData(data);
-        navigate("/", { replace: true });
-      },
-    });
+    setHasForgottenPassword(false);
+    setSignUpRequestUserData({ ...values, device: "Telegram-mini-app" });
+    navigate("/awud-telegram-mini-app/create-pin");
   });
 
   return (
@@ -85,12 +68,12 @@ export default function SignUpPage() {
             placeholder="Write your last name"
             errorMessage={errors.lastName?.message}
           />
-          <Input
+          {/* <Input
             label="Username"
             {...register("userName")}
             placeholder="Write your username"
             errorMessage={errors.userName?.message}
-          />
+          /> */}
           <Input
             label="Email"
             {...register("email")}
@@ -115,7 +98,7 @@ export default function SignUpPage() {
             onSelect={(gender: string) => setValue("gender", gender)}
           />
         </span>
-        <span className="flex h-full justify-between items-center">
+        <span className="flex h-full justify-between py-5 items-center">
           <Link to="/awud-telegram-mini-app/login">
             <ArrowLeft className="text-[#2E2E2E] " size={20} />
           </Link>

@@ -7,6 +7,7 @@ import { ModalProvider } from "@/context/ModalContext.tsx";
 import { AuthProvider } from "@/context/AuthContext.tsx";
 import RenderModal from "@/components/RenderModal.tsx";
 import RenderSpinner from "@/components/RenderSpinner.tsx";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")!).render(
         <AuthProvider>
           <RenderSpinner />
           <RenderModal />
+          <ToastContainer />
           <App />
         </AuthProvider>
       </ModalProvider>

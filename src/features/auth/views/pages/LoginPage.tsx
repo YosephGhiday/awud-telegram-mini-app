@@ -10,6 +10,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { PasswordInput } from "@/components/Password";
 import { setSpinner } from "@/context/SpinnerContext";
+import ShowToast from "@/components/ShowToast";
 
 const schema = yup
   .object({
@@ -36,16 +37,20 @@ export default function LoginPage() {
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
     setSpinner(true);
-    request.handler(() => authApiService.signin(values), {
-      error() {
+    request.handler(() => authApiService.login(values), {
+      error(errorMessage) {
         setSpinner(false);
-        //   ShowToast({
-        //     type: "error",
-        //     message: errorMessage,
-        //   });
+        ShowToast({
+          type: "error",
+          message: errorMessage,
+        });
       },
       success(data: LoginResponse) {
         setSpinner(false);
+        ShowToast({
+          message: "Successfully Logged in",
+          type: "success",
+        });
         updateUserData(data);
         navigate("/", { replace: true });
       },
@@ -53,7 +58,7 @@ export default function LoginPage() {
   });
 
   return (
-    <div className="w-full h-screen bg-white max-w-[500px] flex flex-col  gap-2">
+    <div className="w-full h-screen overflow-y-scroll bg-white max-w-[500px] flex flex-col  gap-2">
       <div className="w-full h-1/2 bg-[#2E2E2E] flex flex-col items-start justify-end">
         <img className="mx-auto" src={LoginImage} />
         <span className="px-10 py-5 flex flex-col">
@@ -80,7 +85,7 @@ export default function LoginPage() {
             placeholder="*******"
             errorMessage={errors.password?.message}
           />
-          <span className="w-full flex justify-end ">
+          <span className="w-full flex my-2 justify-end ">
             <Link
               className="text-textPrimary text-sm"
               to="/awud-telegram-mini-app/forgot-password"
@@ -90,7 +95,7 @@ export default function LoginPage() {
           </span>
         </span>
         <span className="flex flex-col gap-3 items-center">
-          <p className="inline text-sm mx-auto">
+          <p className="inline text-sm my-2 mx-auto">
             If you don’t have an account.{" "}
             <Link
               to="/awud-telegram-mini-app/create-account"
@@ -100,7 +105,7 @@ export default function LoginPage() {
             </Link>
           </p>
           <button
-            className="bg-primary px-4 py-3 w-full rounded-lg text-md  text-white"
+            className="bg-primary px-4 py-3 w-full rounded-lg text-md mb-5 text-white"
             type="submit"
           >
             Login

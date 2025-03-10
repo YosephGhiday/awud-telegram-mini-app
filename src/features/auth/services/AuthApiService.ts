@@ -1,5 +1,6 @@
 import ApiService from "../../../services/ApiServices";
 import LoginResponse from "../data/LoginResponse";
+import SignUpRequest from "../data/SignUpRequest";
 
 export default class AuthApiService {
   private baseUrl = "/users";
@@ -9,7 +10,7 @@ export default class AuthApiService {
     this.api = new ApiService();
   }
 
-  async signin(data: any) {
+  async login(data: any) {
     const response = await this.api
       .supportedMediaType()
       .post<LoginResponse>(this.baseUrl + "/login", data);
@@ -17,7 +18,7 @@ export default class AuthApiService {
     return response;
   }
 
-  async signup(data: any) {
+  async signup(data: SignUpRequest) {
     const response = await this.api
       .supportedMediaType()
       .post<LoginResponse>(this.baseUrl + "/register", data);
@@ -25,10 +26,82 @@ export default class AuthApiService {
     return response;
   }
 
-  async resetForgottenPassword(account: string) {
-    const response = await this.api.post(
-      `${this.baseUrl}/forgot_password/${account}`
+  async getUserDetail() {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .get(this.baseUrl + "/users/me");
+
+    return response;
+  }
+
+  async changePassword(data: any) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .put(this.baseUrl + "/users/change_password", data);
+
+    return response;
+  }
+
+  async activateAccount(data: any) {
+    const response = await this.api.patch(
+      this.baseUrl + "/users/activate_account",
+      data
     );
+
+    return response;
+  }
+
+  async initializeForgotPassword(account: string) {
+    const response = await this.api.post(
+      `${this.baseUrl}/users/forgot_password/${account}`
+    );
+    return response;
+  }
+
+  async forgotPasswordConfirmCode(data: any) {
+    const response = await this.api.post(
+      this.baseUrl + "/users/activate_reset_password",
+      data
+    );
+
+    return response;
+  }
+
+  async forgotPasswordNewPassword(data: any) {
+    const response = await this.api.patch(
+      this.baseUrl + "/users/reset_password/self",
+      data
+    );
+
+    return response;
+  }
+
+  async updateNotificationToken(data: any) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .post(this.baseUrl + "/notifications/device", data);
+
+    return response;
+  }
+
+  async sendAccountActivationCode(phoneNumber: string) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .patch(`${this.baseUrl}/users/activate_account/resend/${phoneNumber}`);
+
+    return response;
+  }
+
+  async uploadClientIdImage(image: any) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .post(this.baseUrl + "/clients/upload/id", image);
+    return response;
+  }
+
+  async checkAppVersion() {
+    const response = await this.api.get(this.baseUrl + "/app-version");
+
     return response;
   }
 }

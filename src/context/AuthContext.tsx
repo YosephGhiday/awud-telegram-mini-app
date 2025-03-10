@@ -3,12 +3,21 @@ import { createContext, useContext, useEffect, useState } from "react";
 import LoginResponse, {
   UserResponse,
 } from "../features/auth/data/LoginResponse";
+import SignUpRequest from "@/features/auth/data/SignUpRequest";
 
 interface AuthContextType {
   // updatePermissions: (userResponse: UserResponse) => void;
   updateUserData: (user: LoginResponse) => void;
   token: string | null;
   user: UserResponse | null;
+  hasForgottenPassword: boolean;
+  setHasForgottenPassword: (status: boolean) => void;
+  signupRequestUserData: SignUpRequest | undefined;
+  setSignUpRequestUserData: (data: SignUpRequest) => void;
+  forgotPasswordAccount: string | undefined;
+  setForgotPasswordAccount: (account: string) => void;
+  forgotPasswordCode: string | undefined;
+  setForgotPasswordCode: (code: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -16,6 +25,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserResponse | null>(null);
+  const [hasForgottenPassword, setHasForgottenPassword] =
+    useState<boolean>(false);
+  const [signupRequestUserData, setSignUpRequestUserData] =
+    useState<SignUpRequest>();
+  const [forgotPasswordAccount, setForgotPasswordAccount] = useState<string>();
+  const [forgotPasswordCode, setForgotPasswordCode] = useState<string>();
 
   const updateUserData = (userResponse: LoginResponse) => {
     // const encryptedUser = encryptData(
@@ -55,8 +70,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         updateUserData,
+        signupRequestUserData,
+        setSignUpRequestUserData,
         user,
         token,
+        hasForgottenPassword,
+        setHasForgottenPassword,
+        forgotPasswordAccount,
+        setForgotPasswordAccount,
+        forgotPasswordCode,
+        setForgotPasswordCode,
       }}
     >
       {children}

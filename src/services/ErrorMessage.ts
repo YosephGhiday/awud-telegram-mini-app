@@ -8,13 +8,13 @@ export default class ErrorMessage {
         errorMessage = "Cannot connect to server";
         break;
       case 400:
-        errorMessage = response.data.message;
+        errorMessage = response.data;
         break;
       case 409:
-        errorMessage = response.data.message;
+        errorMessage = response.data;
         break;
       case 401:
-        errorMessage = response.data.message;
+        errorMessage = response.data;
         break;
       case 500:
         errorMessage = "Server error. Try again later";

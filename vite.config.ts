@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/awud-telegram-mini-app/get-started",
+  base: "/awud-telegram-mini-app/",
   build: {
     outDir: "build",
   },

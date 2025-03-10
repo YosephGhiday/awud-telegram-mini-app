@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { routes } from "@/static/routes/routes";
+
 import ProtectedRoutes from "@/utils/ProtectedRoutes";
 import "@/assets/css/wind.css";
 

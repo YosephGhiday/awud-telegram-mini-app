@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { setSpinner } from "@/context/SpinnerContext";
 import LoginImage from "@/assets/images/LoginImage.png";
 import { ArrowRight, ArrowLeft } from "lucide-react";
+import ShowToast from "@/components/ShowToast";
+import { useAuth } from "@/context/AuthContext";
 
 const schema = yup
   .object({
@@ -18,6 +20,7 @@ const schema = yup
 const authApiService = new AuthApiService();
 
 export default function ForgotPasswordPage() {
+  const { setHasForgottenPassword, setForgotPasswordAccount } = useAuth();
   const navigate = useNavigate();
   const request = useResponse();
 
@@ -33,18 +36,24 @@ export default function ForgotPasswordPage() {
     event!.preventDefault();
     setSpinner(true);
     request.handler(
-      () => authApiService.resetForgottenPassword(values.phoneNumber),
+      () => authApiService.initializeForgotPassword(values.phoneNumber),
       {
-        error() {
+        error(errorMessage) {
           setSpinner(false);
-          //   ShowToast({
-          //     type: "error",
-          //     message: errorMessage,
-          //   });
+          ShowToast({
+            type: "error",
+            message: errorMessage,
+          });
         },
         success() {
           setSpinner(false);
-          navigate("/");
+          setHasForgottenPassword(true);
+          ShowToast({
+            type: "success",
+            message: "We have sent an OTP to your number",
+          });
+          setForgotPasswordAccount(values.phoneNumber);
+          navigate("/awud-telegram-mini-app/confirmation");
         },
       }
     );
@@ -63,7 +72,7 @@ export default function ForgotPasswordPage() {
       </div>
       <form
         onSubmit={onSubmit}
-        className="w-full h-1/2 flex justify-between flex-col pt-5 px-10 pb-20"
+        className="w-full h-1/2 flex justify-between flex-col pt-5 px-10 pb-5"
       >
         <Input
           label="Phone Number"
