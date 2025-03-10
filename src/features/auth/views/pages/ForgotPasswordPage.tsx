@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/Input";
 import * as yup from "yup";
 import AuthApiService from "../../services/AuthApiService";
