@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { decryptData, encryptData } from "../services/CryptoService";
+// import { decryptData, encryptData } from "../services/CryptoService";
 import LoginResponse, {
   UserResponse,
 } from "../features/auth/data/LoginResponse";
@@ -18,12 +18,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserResponse | null>(null);
 
   const updateUserData = (userResponse: LoginResponse) => {
-    const encryptedUser = encryptData(
-      userResponse.user,
-      import.meta.env.VITE_KEY!
-    );
+    // const encryptedUser = encryptData(
+    //   userResponse.user,
+    //   import.meta.env.VITE_KEY!
+    // );
     localStorage.setItem("token", userResponse.token);
-    localStorage.setItem("data", String(encryptedUser));
+    // localStorage.setItem("data", String(encryptedUser));
+    localStorage.setItem("data", String(userResponse.user));
     setUser(userResponse.user);
     setToken(userResponse.token);
   };
@@ -36,12 +37,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (data == null || token == null) {
       return;
     }
-    const decryptedUser: UserResponse = JSON.parse(
-      decryptData(data!, import.meta.env.VITE_KEY!)
-    );
+    // const decryptedUser: UserResponse = JSON.parse(
+    //   decryptData(data!, import.meta.env.VITE_KEY!)
+    // );
     setToken(token);
-    setUser(decryptedUser!);
+    // setUser(decryptedUser!);
+    setUser(JSON.parse(data));
   };
+
+  getUserData ?? "";
 
   useEffect(() => {
     // getUserData();

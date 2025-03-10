@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { useModal } from "../context/ModalContext";
+import { useModal } from "@/context/ModalContext";
 
 export default function RenderModal() {
   const { modals, closeModal } = useModal();
@@ -14,38 +14,36 @@ export default function RenderModal() {
                 key={index}
               >
                 <div className="h-screen flex items-center justify-center md:px-0 px-5">
-                  {
-                    modal.isCustom === true ? (
-                      <div>{modal.modal}</div>
-                    ) : (
-                      <div className="p-5 bg-white rounded-xl min-w-[20%] shadow-xl h-auto">
-                        <div className="grid grid-cols-1">
-                          <div className="flex justify-between mb-2 border-b pb-3">
-                            <p className="text-xs font-bold leading-6 text-textPrimary uppercase">
-                              {modal.title}
-                            </p>
-                            {modal.closeable != undefined &&
-                              modal.closeable === false ? (
-                              <span></span>
-                            ) : (
-                              <X
-                                onClick={closeModal}
-                                className="cursor-pointer w-5 h-5 text-textPrimary"
-                              />
-                            )}
-                          </div>
-                          {modal.modal}
+                  {modal.isCustom === true ? (
+                    <div>{modal.modal}</div>
+                  ) : (
+                    <div className="p-5 bg-white rounded-xl min-w-[20%] shadow-xl h-auto">
+                      <div className="grid grid-cols-1">
+                        <div className="flex justify-between mb-2 border-b pb-3">
+                          <p className="text-xs font-bold leading-6 text-textPrimary uppercase">
+                            {modal.title}
+                          </p>
+                          {modal.closeable != undefined &&
+                          modal.closeable === false ? (
+                            <span></span>
+                          ) : (
+                            <X
+                              onClick={closeModal}
+                              className="cursor-pointer w-5 h-5 text-textPrimary"
+                            />
+                          )}
                         </div>
+                        {modal.modal}
                       </div>
-                    )
-                  }
-                </div >
-              </div >
+                    </div>
+                  )}
+                </div>
+              </div>
             );
           })}
-        </div >
+        </div>
       ) : null}
       <div></div>
-    </div >
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import GetStartedImage from "../assets/images/GetStartedImage.png";
+import GetStartedImage from "@/assets/images/GetStartedImage.png";
 import { ArrowRight } from "lucide-react";
 
 export default function GetStartedPage() {
@@ -22,7 +22,7 @@ export default function GetStartedPage() {
 
       <Link
         to="/awud-telegram-mini-app/login"
-        className="bg-[#85BB65] text-lg text-white rounded-md p-3 flex gap-2 items-center"
+        className="bg-primary text-lg text-white rounded-md p-3 flex gap-2 items-center"
       >
         Get Started
         <ArrowRight size={16} />

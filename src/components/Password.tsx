@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import InputLayout from "./InputLayout";
+import InputLayout from "@/components/InputLayout";
 import { Eye, EyeOff } from "lucide-react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -15,7 +15,7 @@ const PasswordInput: React.ForwardRefRenderFunction<
 
   return (
     <InputLayout label={label} errorMessage={errorMessage}>
-      <div className="relative flex items-center w-full rounded-md text-base  text-[#374653] font-normal bg-white px-3 py-2 h-10 text-textPrimary  outline-2 -outline-offset-1 outline-gray-300 placeholder:text-xs placeholder:font-normal focus-within:outline-[#85BB65] sm:text-[13px]/6">
+      <div className="relative flex items-center w-full rounded-md text-base  text-textPrimary font-normal bg-white px-3 py-2 h-10 text-textPrimary  outline-2 -outline-offset-1 outline-gray-300 placeholder:text-xs placeholder:font-normal focus-within:outline-primary sm:text-[13px]/6">
         {/* Input Field */}
         <input
           type={viewPassword ? "text" : "password"}

@@ -1,14 +1,15 @@
-import LoginImage from "../../../../assets/images/LoginImage.png";
+import LoginImage from "@/assets/images/LoginImage.png";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoginResponse from "../../data/LoginResponse";
-import AuthApiService from "../../services/AuthApiService";
-import useResponse from "../../../../services/useResponse";
+import LoginResponse from "@/features/auth/data/LoginResponse";
+import AuthApiService from "@/features/auth/services/AuthApiService";
+import useResponse from "@/services/useResponse";
 import { useForm } from "react-hook-form";
-import { Input } from "../../../../components/Input";
-import { useAuth } from "../../../../context/AuthContext";
+import { Input } from "@/components/Input";
+import { useAuth } from "@/context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import { PasswordInput } from "../../../../components/Password";
+import { PasswordInput } from "@/components/Password";
+import { setSpinner } from "@/context/SpinnerContext";
 
 const schema = yup
   .object({
@@ -22,7 +23,7 @@ const authApiService = new AuthApiService();
 export default function LoginPage() {
   const navigate = useNavigate();
   const request = useResponse<LoginResponse>();
-  // const { updateUserData } = useAuth();
+  const { updateUserData } = useAuth();
 
   const {
     handleSubmit,
@@ -34,15 +35,18 @@ export default function LoginPage() {
 
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
+    setSpinner(true);
     request.handler(() => authApiService.signin(values), {
       error() {
+        setSpinner(false);
         //   ShowToast({
         //     type: "error",
         //     message: errorMessage,
         //   });
       },
       success(data: LoginResponse) {
-        // updateUserData(data);
+        setSpinner(false);
+        updateUserData(data);
         navigate("/", { replace: true });
       },
     });
@@ -77,7 +81,10 @@ export default function LoginPage() {
             errorMessage={errors.password?.message}
           />
           <span className="w-full flex justify-end ">
-            <Link className="text-[#374653] text-sm" to="/">
+            <Link
+              className="text-textPrimary text-sm"
+              to="/awud-telegram-mini-app/forgot-password"
+            >
               Forgot Pin?
             </Link>
           </span>
@@ -85,12 +92,15 @@ export default function LoginPage() {
         <span className="flex flex-col gap-3 items-center">
           <p className="inline text-sm mx-auto">
             If you don’t have an account.{" "}
-            <Link to="/" className="text-[#85BB65]">
+            <Link
+              to="/awud-telegram-mini-app/create-account"
+              className="text-primary"
+            >
               Create an Account
             </Link>
           </p>
           <button
-            className="bg-[#85BB65] px-4 py-3 w-full rounded-lg text-md  text-white"
+            className="bg-primary px-4 py-3 w-full rounded-lg text-md  text-white"
             type="submit"
           >
             Login

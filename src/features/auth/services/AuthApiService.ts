@@ -13,7 +13,22 @@ export default class AuthApiService {
     const response = await this.api
       .supportedMediaType()
       .post<LoginResponse>(this.baseUrl + "/login", data);
-    
+
+    return response;
+  }
+
+  async signup(data: any) {
+    const response = await this.api
+      .supportedMediaType()
+      .post<LoginResponse>(this.baseUrl + "/register", data);
+
+    return response;
+  }
+
+  async resetForgottenPassword(account: string) {
+    const response = await this.api.post(
+      `${this.baseUrl}/forgot_password/${account}`
+    );
     return response;
   }
 }

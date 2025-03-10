@@ -15,12 +15,12 @@ const InputLayout = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="flex items-center">
           <div className="w-full grid grid-cols-1">
             {label !== undefined && (
-              <label className="text-[#374653] font-semibold mb-1.5 text-">
+              <label className="text-textPrimary font-semibold mb-1.5 text-">
                 {label}
               </label>
             )}
             <div className="relative">
-              <div>{children}</div>
+              <div ref={ref}>{children}</div>
 
               {suffixComponent != undefined && (
                 <div className="absolute right-0 bg-gray-200 h-full rounded-r-lg w-10 flex items-center justify-center">

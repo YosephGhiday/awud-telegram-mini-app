@@ -1,11 +1,11 @@
-import { useSpinner } from "../context/SpinnerContext";
+import { useSpinner } from "@/context/SpinnerContext";
 
 export default function RenderSpinner() {
   const { isSpinner } = useSpinner();
   return (
     <div>
       {isSpinner && (
-        <div className="fixed inset-0 bg-black bg-opacity-35 z-[10002] w-full flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/40  z-[10002] w-full flex items-center justify-center">
           {/* <div className="flex gap-2 flex-wrap justify-center p-4 md:p-12"> */}
           <button
             disabled
