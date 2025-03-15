@@ -6,6 +6,7 @@ import ForgotPasswordPage from "@/features/auth/views/pages/ForgotPasswordPage";
 import ConfirmationPage from "@/features/auth/views/pages/ConfimationPage";
 import CreatePinPage from "@/features/auth/views/pages/CreatePinPage";
 import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/SuccessfullyChangedPasswordPage";
+import HomePage from "@/features/HomePage";
 
 interface PageRoute {
   path: string;
@@ -46,6 +47,11 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/successfully-changed-password",
     element: SuccessfullyChangedPasswordPage,
+  },
+  {
+    path: "/awud-telegram-mini-app/home",
+    element: HomePage,
+    isProtected: true,
   },
 ];
 

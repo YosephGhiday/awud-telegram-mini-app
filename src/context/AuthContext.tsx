@@ -60,10 +60,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(JSON.parse(data));
   };
 
-  getUserData ?? "";
-
   useEffect(() => {
-    // getUserData();
+    getUserData();
   }, []);
 
   return (

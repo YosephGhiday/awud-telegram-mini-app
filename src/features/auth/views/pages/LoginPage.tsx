@@ -35,34 +35,26 @@ export default function LoginPage() {
   });
 
   const onSubmit = handleSubmit((values, event) => {
-    console.log(values);
     event!.preventDefault();
     setSpinner(true);
-    request.handler(
-      () =>
-        authApiService.login({
-          phoneNumber: "0966744215",
-          password: "123456",
-        }),
-      {
-        error(errorMessage) {
-          setSpinner(false);
-          ShowToast({
-            type: "error",
-            message: errorMessage,
-          });
-        },
-        success(data: LoginResponse) {
-          setSpinner(false);
-          ShowToast({
-            message: "Successfully Logged in",
-            type: "success",
-          });
-          updateUserData(data);
-          navigate("/", { replace: true });
-        },
-      }
-    );
+    request.handler(() => authApiService.login(values), {
+      error(errorMessage) {
+        setSpinner(false);
+        ShowToast({
+          type: "error",
+          message: errorMessage,
+        });
+      },
+      success(data: LoginResponse) {
+        setSpinner(false);
+        ShowToast({
+          message: "Successfully Logged in",
+          type: "success",
+        });
+        updateUserData(data);
+        navigate("/awud-telegram-mini-app/home", { replace: true });
+      },
+    });
   });
 
   return (

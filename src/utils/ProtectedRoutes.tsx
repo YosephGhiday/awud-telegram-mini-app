@@ -5,7 +5,7 @@ const ProtectedRoutes = () => {
   const data = localStorage.getItem("data");
 
   if (data == null || token == null) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/awud-telegram-mini-app/login" />;
   }
 
   return <Outlet />;
