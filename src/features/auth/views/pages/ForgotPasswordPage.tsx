@@ -6,7 +6,7 @@ import useResponse from "@/services/useResponse";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { setSpinner } from "@/context/SpinnerContext";
-import LoginImage from "@/assets/images/LoginImage.png";
+import ForgotPasswordImage from "@/assets/images/2People discussing.svg";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
 import { useAuth } from "@/context/AuthContext";
@@ -62,7 +62,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="w-full h-screen bg-white max-w-[500px] flex flex-col  gap-2">
       <div className="w-full h-1/2 bg-[#2E2E2E] flex flex-col items-start justify-end">
-        <img className="mx-auto" src={LoginImage} />
+        <img className="mx-auto" src={ForgotPasswordImage} />
         <span className="px-10 py-5 flex flex-col">
           <p className="text-white text-[30px] font-bold">Forgot Password?</p>
           <p className="text-gray-300 text-sm">

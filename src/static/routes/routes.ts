@@ -1,10 +1,11 @@
-import GetStartedPage from "@/components/GetStartedPage";
+import GetStartedPage from "@/components/pages/GetStartedPage";
 import LoginPage from "@/features/auth/views/pages/LoginPage";
 import SignUpPage from "@/features/auth/views/pages/SignUpPage";
-import CreateAccountPage from "@/components/CreateAccountPage";
+import CreateAccountPage from "@/features/auth/views/pages/CreateAccountPage";
 import ForgotPasswordPage from "@/features/auth/views/pages/ForgotPasswordPage";
 import ConfirmationPage from "@/features/auth/views/pages/ConfimationPage";
 import CreatePinPage from "@/features/auth/views/pages/CreatePinPage";
+import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/SuccessfullyChangedPasswordPage";
 
 interface PageRoute {
   path: string;
@@ -41,6 +42,10 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/create-pin",
     element: CreatePinPage,
+  },
+  {
+    path: "/awud-telegram-mini-app/successfully-changed-password",
+    element: SuccessfullyChangedPasswordPage,
   },
 ];
 

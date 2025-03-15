@@ -6,7 +6,7 @@ import useResponse from "@/services/useResponse";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { setSpinner } from "@/context/SpinnerContext";
-import ConfirmationImage from "@/assets/images/ConfimationImage.png";
+import ConfirmationImage from "@/assets/images/Messeges.svg";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
 import { useAuth } from "@/context/AuthContext";

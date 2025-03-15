@@ -9,7 +9,7 @@ import { setSpinner } from "@/context/SpinnerContext";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
 import { useAuth } from "@/context/AuthContext";
-import CreatePinImage from "@/assets/images/CreatePinImage.png";
+import CreatePinImage from "@/assets/images/Man Running.svg";
 
 const schema = yup
   .object({
@@ -66,7 +66,7 @@ export default function ConfirmationPage() {
               type: "success",
               message: "Pin Changed Successfully",
             });
-            navigate("/pin-changed-successfully");
+            navigate("/awud-telegram-mini-app/successfully-changed-password");
           },
         }
       );

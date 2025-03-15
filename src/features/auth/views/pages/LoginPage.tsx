@@ -1,4 +1,4 @@
-import LoginImage from "@/assets/images/LoginImage.png";
+import LoginImage from "@/assets/images/2People discussing.svg";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoginResponse from "@/features/auth/data/LoginResponse";
@@ -35,26 +35,34 @@ export default function LoginPage() {
   });
 
   const onSubmit = handleSubmit((values, event) => {
+    console.log(values);
     event!.preventDefault();
     setSpinner(true);
-    request.handler(() => authApiService.login(values), {
-      error(errorMessage) {
-        setSpinner(false);
-        ShowToast({
-          type: "error",
-          message: errorMessage,
-        });
-      },
-      success(data: LoginResponse) {
-        setSpinner(false);
-        ShowToast({
-          message: "Successfully Logged in",
-          type: "success",
-        });
-        updateUserData(data);
-        navigate("/", { replace: true });
-      },
-    });
+    request.handler(
+      () =>
+        authApiService.login({
+          phoneNumber: "0966744215",
+          password: "123456",
+        }),
+      {
+        error(errorMessage) {
+          setSpinner(false);
+          ShowToast({
+            type: "error",
+            message: errorMessage,
+          });
+        },
+        success(data: LoginResponse) {
+          setSpinner(false);
+          ShowToast({
+            message: "Successfully Logged in",
+            type: "success",
+          });
+          updateUserData(data);
+          navigate("/", { replace: true });
+        },
+      }
+    );
   });
 
   return (

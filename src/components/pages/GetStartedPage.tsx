@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import GetStartedImage from "@/assets/images/GetStartedImage.png";
+import GetStartedImage from "@/assets/images/Planting Tree.svg";
 import { ArrowRight } from "lucide-react";
 
 export default function GetStartedPage() {
