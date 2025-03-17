@@ -1,13 +1,10 @@
-import { UserResponse } from "@/features/auth/data/LoginResponse";
 import { imageRoute } from "@/services/ApiServices";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
-interface HeaderProps {
-  user: UserResponse;
-}
-
-export default function Header({ user }: HeaderProps) {
+export default function Header() {
+  const { user } = useAuth();
   function getGreeting() {
     const now = new Date();
     const hours = now.getHours();
@@ -21,16 +18,15 @@ export default function Header({ user }: HeaderProps) {
     }
     return greeting;
   }
-  console.log(user);
   return (
     <div className="w-full bg-white flex items-center justify-between py-[10px] px-[28px]">
       <span className="flex flex-col items-start justify-center text-textPrimary">
-        <p className="text-xl font-bold">Hi, {user.firstName}</p>
+        <p className="text-xl font-bold">Hi, {user?.firstName}</p>
         <p className="text-xs">{getGreeting()}</p>
       </span>
       <span className="flex items-center justify-center gap-3">
-        <Link to={`/awud-telegram-mini-app/user-details/${user.id}`}>
-          {user.image != null && user.image != "" ? (
+        <Link to={`/awud-telegram-mini-app/user-details/${user?.id}`}>
+          {user?.image != null && user?.image != "" ? (
             <img
               src={`${imageRoute}/${user.image}`}
               className="w-10 h-10 rounded-full"

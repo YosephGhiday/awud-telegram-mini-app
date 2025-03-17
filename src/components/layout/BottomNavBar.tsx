@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 export default function BottomNavBar() {
   const location = useLocation();
   const checkLocation = (page: string): boolean => {
-    return location.pathname.includes(page);
+    return location.pathname == page;
   };
 
   return (
@@ -12,25 +12,29 @@ export default function BottomNavBar() {
       <Link
         to="/awud-telegram-mini-app/home"
         className={`flex  px-[9px] py-[6px] rounded-md ${
-          checkLocation("home") ? "text-white bg-primary" : "text-textPrimary"
+          checkLocation("/awud-telegram-mini-app/")
+            ? "text-white bg-primary"
+            : "text-textPrimary"
         } flex-col items-center justify-center"`}
       >
         <Home size={30} />
         <p className="font-bold text-sm">Home</p>
       </Link>
       <Link
-        to="/awud-telegram-mini-app/home"
+        to="/awud-telegram-mini-app/"
         className={`flex  px-[9px] py-[6px] rounded-md ${
-          checkLocation("equbs") ? "text-white bg-primary" : "text-textPrimary"
+          checkLocation("/awud-telegram-mini-app/equbs")
+            ? "text-white bg-primary"
+            : "text-textPrimary"
         } flex-col items-center justify-center"`}
       >
         <Store size={30} />
         <p className="font-bold text-sm">Equbs</p>
       </Link>
       <Link
-        to="/awud-telegram-mini-app/home"
+        to="/awud-telegram-mini-app/"
         className={`flex  px-[9px] py-[6px] rounded-md ${
-          checkLocation("transactions")
+          checkLocation("/awud-telegram-mini-app/transactions")
             ? "text-white bg-primary"
             : "text-textPrimary"
         } flex-col items-center justify-center"`}
@@ -39,9 +43,9 @@ export default function BottomNavBar() {
         <p className="font-bold text-sm">Transactions</p>
       </Link>
       <Link
-        to="/awud-telegram-mini-app/home"
+        to="/awud-telegram-mini-app/"
         className={`flex  px-[9px] py-[6px] rounded-md ${
-          checkLocation("savings")
+          checkLocation("/awud-telegram-mini-app/savings")
             ? "text-white bg-primary"
             : "text-textPrimary"
         } flex-col items-center justify-center"`}

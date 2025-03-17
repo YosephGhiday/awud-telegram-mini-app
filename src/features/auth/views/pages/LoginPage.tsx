@@ -35,6 +35,7 @@ export default function LoginPage() {
   });
 
   const onSubmit = handleSubmit((values, event) => {
+    // console.log(values);
     event!.preventDefault();
     setSpinner(true);
     request.handler(() => authApiService.login(values), {
@@ -52,7 +53,7 @@ export default function LoginPage() {
           type: "success",
         });
         updateUserData(data);
-        navigate("/awud-telegram-mini-app/home", { replace: true });
+        navigate("/awud-telegram-mini-app/", { replace: true });
       },
     });
   });

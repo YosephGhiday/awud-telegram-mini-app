@@ -36,7 +36,7 @@ api.interceptors.response.use(
     if (error.status === 403) {
       api.defaults.headers.common["Authorization"] = null;
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/awud-telegram-mini-app/login";
     }
     return Promise.reject(error);
   }

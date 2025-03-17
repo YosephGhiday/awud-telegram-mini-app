@@ -1,4 +1,5 @@
 import ApiService from "../../../services/ApiServices";
+import { ClientResponse } from "../data/ClientResponse";
 import LoginResponse from "../data/LoginResponse";
 import SignUpRequest from "../data/SignUpRequest";
 
@@ -29,7 +30,7 @@ export default class AuthApiService {
   async getUserDetail() {
     const response = await this.api
       .addAuthorizationHeader()
-      .get(this.baseUrl + "/users/me");
+      .get<ClientResponse>(this.baseUrl + "/me");
 
     return response;
   }
