@@ -24,7 +24,7 @@ const authApiService = new AuthApiService();
 export default function LoginPage() {
   const navigate = useNavigate();
   const request = useResponse<LoginResponse>();
-  const { updateUserData } = useAuth();
+  const { updateUserData, getUserDetail } = useAuth();
 
   const {
     handleSubmit,
@@ -53,6 +53,7 @@ export default function LoginPage() {
           type: "success",
         });
         updateUserData(data);
+        getUserDetail();
         navigate("/awud-telegram-mini-app/", { replace: true });
       },
     });

@@ -4,10 +4,19 @@ interface Props {
   onSelect: (gender: string) => void;
   label: string;
   errorMessage?: string;
+  value?: string;
 }
 
-export default function GenderPicker({ label, errorMessage, onSelect }: Props) {
+export default function GenderPicker({
+  label,
+  errorMessage,
+  onSelect,
+  value,
+}: Props) {
   const [selectedGender, setSelectedGender] = useState<string>();
+  if (value != null && value != "") {
+    setSelectedGender(value);
+  }
 
   const handleClick = (gender: string) => {
     setSelectedGender(gender);

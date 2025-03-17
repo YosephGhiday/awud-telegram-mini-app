@@ -26,8 +26,6 @@ export default function BalanceCard({ user }: BalanceCardProps) {
   const [isShowingSavingsBalance, setIsShowingSavingsBalance] =
     useState<boolean>(false);
 
-  console.log(user);
-
   return (
     <div className="w-full py-[12px] px-[16px] border rounded-md shadow-md border-[#D9EACF] overflow-hidden relative">
       <span className="p-30 z-10 bg-[#F6FBF9] absolute bottom-[-20px] right-[-50px] rounded-full"></span>

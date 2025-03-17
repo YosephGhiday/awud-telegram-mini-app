@@ -19,6 +19,10 @@ export default class AuthApiService {
     return response;
   }
 
+  logout() {
+    localStorage.clear();
+  }
+
   async signup(data: SignUpRequest) {
     const response = await this.api
       .supportedMediaType()
@@ -103,6 +107,11 @@ export default class AuthApiService {
   async checkAppVersion() {
     const response = await this.api.get(this.baseUrl + "/app-version");
 
+    return response;
+  }
+
+  async updateProfile(data: any) {
+    const response = await this.api.post("/users/update_profile_request", data);
     return response;
   }
 }

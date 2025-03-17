@@ -25,7 +25,7 @@ export default function Header() {
         <p className="text-xs">{getGreeting()}</p>
       </span>
       <span className="flex items-center justify-center gap-3">
-        <Link to={`/awud-telegram-mini-app/user-details/${user?.id}`}>
+        <Link to="/awud-telegram-mini-app/settings">
           {user?.image != null && user?.image != "" ? (
             <img
               src={`${imageRoute}/${user.image}`}

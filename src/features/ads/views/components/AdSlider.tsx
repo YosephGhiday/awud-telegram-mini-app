@@ -1,7 +1,7 @@
 import { Pagination } from "swiper/modules";
 import BannerResponse from "../../data/BannerResponse";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { imageRoute } from "@/services/ApiServices";
+// import { imageRoute } from "@/services/ApiServices";
 import { useNavigate } from "react-router-dom";
 import WelcomeImage from "@/assets/images/Welcome.png";
 

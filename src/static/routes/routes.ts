@@ -6,6 +6,8 @@ import ForgotPasswordPage from "@/features/auth/views/pages/ForgotPasswordPage";
 import ConfirmationPage from "@/features/auth/views/pages/ConfimationPage";
 import CreatePinPage from "@/features/auth/views/pages/CreatePinPage";
 import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/SuccessfullyChangedPasswordPage";
+import SettingsPage from "@/features/auth/views/pages/SettingsPage";
+import UpdateProfile from "@/features/auth/views/pages/UpdateProfilePage";
 import HomePage from "@/HomePage";
 
 interface PageRoute {
@@ -50,6 +52,16 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/",
     element: HomePage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/settings",
+    element: SettingsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/update-profile",
+    element: UpdateProfile,
     isProtected: true,
   },
 ];
