@@ -19,7 +19,7 @@ export default function Header() {
     return greeting;
   }
   return (
-    <div className="w-full bg-white flex items-center justify-between py-[10px] px-[28px]">
+    <div className="w-full fixed top-0 right-0 z-30 bg-white flex items-center justify-between py-[10px] px-[28px]">
       <span className="flex flex-col items-start justify-center text-textPrimary">
         <p className="text-xl font-bold">Hi, {user?.firstName}</p>
         <p className="text-xs">{getGreeting()}</p>

@@ -8,7 +8,7 @@ export default function BottomNavBar() {
   };
 
   return (
-    <div className="w-full fixed bottom-0 right-0 bg-white flex items-center justify-between py-[10px] px-[28px]">
+    <div className="w-full z-30 fixed bottom-0 right-0 bg-white flex items-center justify-between py-[10px] px-[28px]">
       <Link
         to="/awud-telegram-mini-app/home"
         className={`flex  px-[9px] py-[6px] rounded-md ${

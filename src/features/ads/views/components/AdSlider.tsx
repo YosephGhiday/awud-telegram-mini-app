@@ -1,9 +1,7 @@
 import { Pagination } from "swiper/modules";
 import BannerResponse from "../../data/BannerResponse";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import { imageRoute } from "@/services/ApiServices";
 import { useNavigate } from "react-router-dom";
-import WelcomeImage from "@/assets/images/Welcome.png";
 
 import "swiper/swiper-bundle.css";
 
@@ -59,8 +57,7 @@ export default ({ ads, loading }: AdSliderProps) => {
           >
             <img
               className="w-full shadow-lg h-[135px] rounded-lg overflow-hidden"
-              //   src={`${imageRoute}/${ad.image}`}
-              src={WelcomeImage}
+              src={`https://api.awudequbs.com/images/${ad.image}`}
             />
           </SwiperSlide>
         ))}

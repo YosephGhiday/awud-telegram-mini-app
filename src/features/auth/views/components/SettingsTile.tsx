@@ -16,7 +16,7 @@ export default function SettingsTile({ icon, text, page }: SettingsTileProps) {
   return (
     <span
       onClick={handleClick}
-      className="flex justify-between items-center shadow-md rounded-md py-[20px] px-[14px] w-full"
+      className="flex justify-between items-center shadow-sm bg-white rounded-md py-[20px] px-[14px] w-full"
     >
       <span className="flex items-center gap-4">
         <span className="p-[5px] bg-gray-100 rounded-sm">{icon}</span>

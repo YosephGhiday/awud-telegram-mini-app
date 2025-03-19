@@ -26,7 +26,6 @@ export default function ShowToast(values: ShowToastProps) {
       autoClose: 3000,
       hideProgressBar: true,
       closeOnClick: true,
-      draggable: true,
       transition: Slide,
       style: {
         background: "transparent",

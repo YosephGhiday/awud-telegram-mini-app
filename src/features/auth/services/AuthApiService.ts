@@ -42,7 +42,7 @@ export default class AuthApiService {
   async changePassword(data: any) {
     const response = await this.api
       .addAuthorizationHeader()
-      .put(this.baseUrl + "/users/change_password", data);
+      .put("/users/change_password", data);
 
     return response;
   }

@@ -7,8 +7,11 @@ import ConfirmationPage from "@/features/auth/views/pages/ConfimationPage";
 import CreatePinPage from "@/features/auth/views/pages/CreatePinPage";
 import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/SuccessfullyChangedPasswordPage";
 import SettingsPage from "@/features/auth/views/pages/SettingsPage";
-import UpdateProfile from "@/features/auth/views/pages/UpdateProfilePage";
 import HomePage from "@/HomePage";
+import ChangePinPage from "@/features/auth/views/pages/ChangePinPage";
+import ProfileDetailPage from "@/features/auth/views/pages/ProfileDetailPage";
+import TermsPage from "@/components/pages/Termspage";
+import ContactUsPage from "@/components/pages/ContactUsPage";
 
 interface PageRoute {
   path: string;
@@ -60,8 +63,22 @@ const routes: PageRoute[] = [
     isProtected: true,
   },
   {
-    path: "/awud-telegram-mini-app/update-profile",
-    element: UpdateProfile,
+    path: "/awud-telegram-mini-app/profile-detail",
+    element: ProfileDetailPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/change-pin",
+    element: ChangePinPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/terms-and-conditions",
+    element: TermsPage,
+  },
+  {
+    path: "/awud-telegram-mini-app/contact-us",
+    element: ContactUsPage,
     isProtected: true,
   },
 ];
