@@ -7,7 +7,7 @@ interface DefaultLayoutProps {
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
-    <div className="w-full h-screen overflow-y-scroll bg-gray-100/75 max-w-[500px] flex flex-col  gap-2 pt-20">
+    <div className="w-full h-screen overflow-y-scroll hide-scrollbar bg-[#F9F9F9] max-w-[500px] flex flex-col  gap-2 pt-20">
       <Header />
       {children}
       <BottomNavBar />

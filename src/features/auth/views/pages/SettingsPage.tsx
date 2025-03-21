@@ -22,13 +22,13 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="w-full h-screen overflow-y-scroll bg-gray-100/75 max-w-[500px] flex flex-col px-10 py-15 gap-5 justify-start items-center">
+    <div className="w-full hide-scrollbar h-screen overflow-y-scroll bg-[#F9F9F9] max-w-[500px] flex flex-col px-10 py-15 gap-5 justify-start items-center">
       <span className="w-full bg-white px-10 py-5 fixed top-0 right-0  flex text-textPrimary items-center justify-start gap-4">
         <ArrowLeft size={25} onClick={() => navigator(-1)} />
         <p className="text-lg font-bold">Account</p>
       </span>
       <span className="w-full flex flex-col items-center justify-center my-10">
-        <User className="w-30 h-30 p-10 rounded-full border text-textPrimary bg-gray-100/75" />
+        <User className="w-30 h-30 p-10 rounded-full border text-textPrimary bg-gray-[#F9F9F9]" />
         <p className="font-extrabold text-lg text-textPrimary mt-2 mb-1">
           {user?.firstName + " " + user?.lastName}
         </p>

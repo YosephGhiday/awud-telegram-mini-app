@@ -6,25 +6,29 @@ import useResponse from "@/services/useResponse";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { setSpinner } from "@/context/SpinnerContext";
-import ForgotPasswordImage from "@/assets/images/2People discussing.svg";
+import ConfirmationImage from "@/assets/images/Messeges.svg";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
+import { useAuth } from "@/context/AuthContext";
+// import { useEffect } from "react";
 
 const schema = yup
   .object({
-    phoneNumber: yup.string().required("Phone number is required!"),
+    OTP: yup.string().required("This field cannot be empty!"),
   })
   .required();
 
 const authApiService = new AuthApiService();
 
-export default function ForgotPasswordPage() {
+export default function SignUpConfirmationPage() {
   const navigate = useNavigate();
   const request = useResponse();
+  const { signupRequestUserData, updateUserData } = useAuth();
 
   const {
     handleSubmit,
     register,
+    // setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -33,8 +37,13 @@ export default function ForgotPasswordPage() {
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
     setSpinner(true);
+
     request.handler(
-      () => authApiService.initializeForgotPassword(values.phoneNumber),
+      () =>
+        authApiService.activateAccount({
+          code: values.OTP,
+          account: signupRequestUserData?.phoneNumber,
+        }),
       {
         error(errorMessage) {
           setSpinner(false);
@@ -43,40 +52,60 @@ export default function ForgotPasswordPage() {
             message: errorMessage,
           });
         },
-        success() {
+        success(data) {
           setSpinner(false);
           ShowToast({
             type: "success",
-            message: "We have sent an OTP to your number",
+            message: "Successfully verified OTP!",
           });
-          navigate(
-            `/awud-telegram-mini-app/forgot-password-confirmation/${values.phoneNumber}`
-          );
+          updateUserData(data);
+          // navigate("/");
         },
       }
     );
   });
 
+  //   useEffect(() => {
+  //     if ('OTPCredential' in window) {
+  //       const ac = new AbortController();
+  //       navigator.credentials
+  //         .get({
+  //           otp: { transport: ['sms'] },
+  //           signal: ac.signal,
+  //         })
+  //         .then((otp) => {
+  //           console.log(otp?.code);
+  //           setValue("OTP",otp?.code);
+  //           ac.abort();
+  //         })
+  //         .catch((err) => {
+  //           ac.abort();
+  //           console.error(err);
+  //         });
+  //     }
+  //   }, []);
+
   return (
     <div className="w-full h-screen bg-white max-w-[500px] flex flex-col  gap-2">
-      <div className="w-full h-1/2 bg-[#2E2E2E] flex flex-col items-start justify-end">
-        <img className="mx-auto" src={ForgotPasswordImage} />
+      <div className="w-full h-1/3 bg-[#2E2E2E] flex flex-col items-start justify-end">
+        <img className="mx-auto" src={ConfirmationImage} />
         <span className="px-10 py-5 flex flex-col">
-          <p className="text-white text-[30px] font-bold">Forgot Password?</p>
+          <p className="text-white text-[30px] font-bold">Confirmation</p>
           <p className="text-gray-300 text-sm">
-            Register & get started with Awud.
+            we have sent an OTP to the number you entered.
           </p>
         </span>
       </div>
       <form
         onSubmit={onSubmit}
-        className="w-full h-1/2 flex justify-between flex-col pt-5 px-10 pb-5"
+        className="w-full h-2/3 flex justify-between flex-col pt-5 px-10 pb-5"
       >
         <Input
-          label="Phone Number"
-          {...register("phoneNumber")}
-          placeholder="Enter Phone Number"
-          errorMessage={errors.phoneNumber?.message}
+          label="OTP"
+          autoComplete="one-time-code"
+          {...register("OTP")}
+          placeholder="Enter OTP"
+          errorMessage={errors.OTP?.message}
         />
 
         <span className="flex justify-between items-center">

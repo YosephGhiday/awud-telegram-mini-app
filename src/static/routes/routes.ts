@@ -3,15 +3,18 @@ import LoginPage from "@/features/auth/views/pages/LoginPage";
 import SignUpPage from "@/features/auth/views/pages/SignUpPage";
 import CreateAccountPage from "@/features/auth/views/pages/CreateAccountPage";
 import ForgotPasswordPage from "@/features/auth/views/pages/ForgotPasswordPage";
-import ConfirmationPage from "@/features/auth/views/pages/ConfimationPage";
-import CreatePinPage from "@/features/auth/views/pages/CreatePinPage";
 import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/SuccessfullyChangedPasswordPage";
 import SettingsPage from "@/features/auth/views/pages/SettingsPage";
-import HomePage from "@/HomePage";
 import ChangePinPage from "@/features/auth/views/pages/ChangePinPage";
 import ProfileDetailPage from "@/features/auth/views/pages/ProfileDetailPage";
 import TermsPage from "@/components/pages/Termspage";
 import ContactUsPage from "@/components/pages/ContactUsPage";
+import ForgotPasswordCreatePinPage from "@/features/auth/views/pages/ForgotPasswordCreatePinPage";
+import ForgotPasswordConfirmationPage from "@/features/auth/views/pages/ForgotPasswordConfimationPage";
+import SignUpConfirmationPage from "@/features/auth/views/pages/SignUpConfirmationPage";
+import NewPinPage from "@/features/auth/views/pages/NewPinPage";
+
+import HomePage from "@/HomePage";
 
 interface PageRoute {
   path: string;
@@ -40,13 +43,22 @@ const routes: PageRoute[] = [
     path: "/awud-telegram-mini-app/forgot-password",
     element: ForgotPasswordPage,
   },
+
   {
-    path: "/awud-telegram-mini-app/confirmation",
-    element: ConfirmationPage,
+    path: "/awud-telegram-mini-app/forgot-password-confirmation/:phone",
+    element: ForgotPasswordConfirmationPage,
   },
   {
-    path: "/awud-telegram-mini-app/create-pin",
-    element: CreatePinPage,
+    path: "/awud-telegram-mini-app/forgot-password-create-pin/:phone",
+    element: ForgotPasswordCreatePinPage,
+  },
+  {
+    path: "/awud-telegram-mini-app/new-pin",
+    element: NewPinPage,
+  },
+  {
+    path: "/awud-telegram-mini-app/sign-up-confirmation",
+    element: SignUpConfirmationPage,
   },
   {
     path: "/awud-telegram-mini-app/successfully-changed-password",

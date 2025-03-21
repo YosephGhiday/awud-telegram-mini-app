@@ -10,6 +10,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
 import { useAuth } from "@/context/AuthContext";
 import CreatePinImage from "@/assets/images/Man Running.svg";
+import { useParams } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -23,15 +24,12 @@ const schema = yup
 
 const authApiService = new AuthApiService();
 
-export default function ConfirmationPage() {
+export default function ForgotPasswordCreatePinPage() {
   const navigate = useNavigate();
   const request = useResponse();
-  const {
-    hasForgottenPassword,
-    signupRequestUserData,
-    forgotPasswordAccount,
-    forgotPasswordCode,
-  } = useAuth();
+  const { forgotPasswordCode } = useAuth();
+
+  const { phone } = useParams();
 
   const {
     handleSubmit,
@@ -44,58 +42,32 @@ export default function ConfirmationPage() {
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
     setSpinner(true);
-    if (hasForgottenPassword) {
-      request.handler(
-        () =>
-          authApiService.forgotPasswordNewPassword({
-            account: forgotPasswordAccount,
-            code: forgotPasswordCode,
-            newPassword: values.password,
-          }),
-        {
-          error(errorMessage) {
-            setSpinner(false);
-            ShowToast({
-              type: "error",
-              message: errorMessage,
-            });
-          },
-          success() {
-            setSpinner(false);
-            ShowToast({
-              type: "success",
-              message: "Pin Changed Successfully",
-            });
-            navigate("/awud-telegram-mini-app/successfully-changed-password");
-          },
-        }
-      );
-    } else {
-      request.handler(
-        () =>
-          authApiService.signup({
-            ...signupRequestUserData!,
-            password: values.password,
-          }),
-        {
-          error(errorMessage) {
-            setSpinner(false);
-            ShowToast({
-              type: "error",
-              message: errorMessage,
-            });
-          },
-          success() {
-            setSpinner(false);
-            ShowToast({
-              type: "success",
-              message: "Account Created Successfully!",
-            });
-            navigate("/awud-telegram-mini-app/confirmation");
-          },
-        }
-      );
-    }
+
+    request.handler(
+      () =>
+        authApiService.forgotPasswordNewPassword({
+          account: phone,
+          code: forgotPasswordCode,
+          newPassword: values.password,
+        }),
+      {
+        error(errorMessage) {
+          setSpinner(false);
+          ShowToast({
+            type: "error",
+            message: errorMessage,
+          });
+        },
+        success() {
+          setSpinner(false);
+          ShowToast({
+            type: "success",
+            message: "Pin Changed Successfully",
+          });
+          navigate("/awud-telegram-mini-app/successfully-changed-password");
+        },
+      }
+    );
   });
 
   return (
@@ -103,14 +75,8 @@ export default function ConfirmationPage() {
       <div className="w-full h-1/2 bg-[#2E2E2E] flex flex-col items-start justify-end">
         <img className="mx-auto" src={CreatePinImage} />
         <span className="px-10 pb-5 flex flex-col">
-          <p className="text-white text-[30px] font-bold">
-            {hasForgottenPassword ? "New Pin" : "Create Pin"}
-          </p>
-          <p className="text-gray-300 text-sm">
-            {hasForgottenPassword
-              ? "Enter your new pin number"
-              : "Create your pin"}
-          </p>
+          <p className="text-white text-[30px] font-bold">Create Pin</p>
+          <p className="text-gray-300 text-sm">Create your pin</p>
         </span>
       </div>
       <form

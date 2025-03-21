@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Input } from "@/components/Input";
 import * as yup from "yup";
 import AuthApiService from "../../services/AuthApiService";
@@ -20,16 +20,11 @@ const schema = yup
 
 const authApiService = new AuthApiService();
 
-export default function ConfirmationPage() {
+export default function ForgotPasswordConfirmationPage() {
   const navigate = useNavigate();
   const request = useResponse();
-  const {
-    hasForgottenPassword,
-    signupRequestUserData,
-    updateUserData,
-    forgotPasswordAccount,
-    setForgotPasswordCode,
-  } = useAuth();
+  const { setForgotPasswordCode } = useAuth();
+  const { phone } = useParams();
 
   const {
     handleSubmit,
@@ -43,59 +38,33 @@ export default function ConfirmationPage() {
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
     setSpinner(true);
-    if (hasForgottenPassword) {
-      request.handler(
-        () =>
-          authApiService.forgotPasswordConfirmCode({
-            code: values.OTP,
-            account: forgotPasswordAccount!,
-          }),
-        {
-          error(errorMessage) {
-            setSpinner(false);
-            ShowToast({
-              type: "error",
-              message: errorMessage,
-            });
-          },
-          success() {
-            setSpinner(false);
-            setForgotPasswordCode(values.OTP);
-            ShowToast({
-              type: "success",
-              message: "Successfully verified OTP!",
-            });
-            navigate("/create-pin");
-          },
-        }
-      );
-    } else {
-      request.handler(
-        () =>
-          authApiService.activateAccount({
-            code: values.OTP,
-            account: signupRequestUserData?.phoneNumber,
-          }),
-        {
-          error(errorMessage) {
-            setSpinner(false);
-            ShowToast({
-              type: "error",
-              message: errorMessage,
-            });
-          },
-          success(data) {
-            setSpinner(false);
-            ShowToast({
-              type: "success",
-              message: "Successfully verified OTP!",
-            });
-            updateUserData(data);
-            // navigate("/");
-          },
-        }
-      );
-    }
+    request.handler(
+      () =>
+        authApiService.forgotPasswordConfirmCode({
+          code: values.OTP,
+          account: phone!,
+        }),
+      {
+        error(errorMessage) {
+          setSpinner(false);
+          ShowToast({
+            type: "error",
+            message: errorMessage,
+          });
+        },
+        success() {
+          setSpinner(false);
+          setForgotPasswordCode(values.OTP);
+          ShowToast({
+            type: "success",
+            message: "Successfully verified OTP!",
+          });
+          navigate(
+            `/awud-telegram-mini-app/forgot-password-create-pin/${phone}`
+          );
+        },
+      }
+    );
   });
 
   //   useEffect(() => {

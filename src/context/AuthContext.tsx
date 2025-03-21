@@ -5,7 +5,6 @@ import LoginResponse, {
 } from "../features/auth/data/LoginResponse";
 import SignUpRequest from "@/features/auth/data/SignUpRequest";
 import AuthApiService from "@/features/auth/services/AuthApiService";
-// import { setSpinner } from "./SpinnerContext";
 import { ClientResponse } from "@/features/auth/data/ClientResponse";
 import useResponse from "@/services/useResponse";
 import ShowToast from "@/components/ShowToast";
@@ -15,12 +14,8 @@ interface AuthContextType {
   updateUserData: (user: LoginResponse) => void;
   token: string | null;
   user: UserResponse | null;
-  hasForgottenPassword: boolean;
-  setHasForgottenPassword: (status: boolean) => void;
   signupRequestUserData: SignUpRequest | undefined;
   setSignUpRequestUserData: (data: SignUpRequest) => void;
-  forgotPasswordAccount: string | undefined;
-  setForgotPasswordAccount: (account: string) => void;
   forgotPasswordCode: string | undefined;
   setForgotPasswordCode: (code: string) => void;
   userDetail: ClientResponse | null;
@@ -34,11 +29,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [userDetail, setUserDetail] = useState<ClientResponse | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserResponse | null>(null);
-  const [hasForgottenPassword, setHasForgottenPassword] =
-    useState<boolean>(false);
   const [signupRequestUserData, setSignUpRequestUserData] =
     useState<SignUpRequest>();
-  const [forgotPasswordAccount, setForgotPasswordAccount] = useState<string>();
   const [forgotPasswordCode, setForgotPasswordCode] = useState<string>();
 
   const clientResponse = useResponse<ClientResponse>();
@@ -78,16 +70,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (data == null || token == null) {
       return;
     }
-    // setSpinner(true);
     clientResponse.handler(() => authApiService.getUserDetail(), {
       success(data) {
         setUserDetail(data);
         localStorage.setItem("userDetail", JSON.stringify(data));
-        // setSpinner(false);
         ShowToast({ type: "success", message: "Sync successfull!" });
       },
       error(errorMessage) {
-        // setSpinner(false);
         ShowToast({ type: "error", message: errorMessage });
         const data = localStorage.getItem("userDetail");
         if (data) {
@@ -112,10 +101,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSignUpRequestUserData,
         user,
         token,
-        hasForgottenPassword,
-        setHasForgottenPassword,
-        forgotPasswordAccount,
-        setForgotPasswordAccount,
         forgotPasswordCode,
         setForgotPasswordCode,
         getUserDetail,

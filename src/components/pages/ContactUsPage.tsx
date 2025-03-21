@@ -5,7 +5,7 @@ export default function ContactUsPage() {
   const navigator = useNavigate();
 
   return (
-    <div className="w-full h-screen overflow-y-scroll px-10 bg-gray-white max-w-[500px] flex flex-col pt-25 gap-5 justify-start items-center">
+    <div className="w-full hide-scrollbar h-screen overflow-y-scroll px-10 bg-white max-w-[500px] flex flex-col pt-25 gap-5 justify-start items-center">
       <span className="w-full bg-white px-10 py-5 fixed top-0 right-0  flex text-textPrimary items-center justify-start gap-4">
         <ArrowLeft size={25} onClick={() => navigator(-1)} />
       </span>

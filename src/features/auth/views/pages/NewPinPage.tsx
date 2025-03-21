@@ -6,21 +6,27 @@ import useResponse from "@/services/useResponse";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { setSpinner } from "@/context/SpinnerContext";
-import ForgotPasswordImage from "@/assets/images/2People discussing.svg";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import ShowToast from "@/components/ShowToast";
+import { useAuth } from "@/context/AuthContext";
+import CreatePinImage from "@/assets/images/Man Running.svg";
 
 const schema = yup
   .object({
-    phoneNumber: yup.string().required("Phone number is required!"),
+    password: yup.string().required("This field cannot be empty!"),
+    confirmPassword: yup
+      .string()
+      .required("This field cannot be empty!")
+      .oneOf([yup.ref("password")], "Passwords must match!"),
   })
   .required();
 
 const authApiService = new AuthApiService();
 
-export default function ForgotPasswordPage() {
+export default function NewPinPage() {
   const navigate = useNavigate();
   const request = useResponse();
+  const { signupRequestUserData } = useAuth();
 
   const {
     handleSubmit,
@@ -33,8 +39,13 @@ export default function ForgotPasswordPage() {
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
     setSpinner(true);
+
     request.handler(
-      () => authApiService.initializeForgotPassword(values.phoneNumber),
+      () =>
+        authApiService.signup({
+          ...signupRequestUserData!,
+          password: values.password,
+        }),
       {
         error(errorMessage) {
           setSpinner(false);
@@ -47,11 +58,9 @@ export default function ForgotPasswordPage() {
           setSpinner(false);
           ShowToast({
             type: "success",
-            message: "We have sent an OTP to your number",
+            message: "Account Created Successfully!",
           });
-          navigate(
-            `/awud-telegram-mini-app/forgot-password-confirmation/${values.phoneNumber}`
-          );
+          navigate("/awud-telegram-mini-app/sign-up-confirmation");
         },
       }
     );
@@ -60,24 +69,32 @@ export default function ForgotPasswordPage() {
   return (
     <div className="w-full h-screen bg-white max-w-[500px] flex flex-col  gap-2">
       <div className="w-full h-1/2 bg-[#2E2E2E] flex flex-col items-start justify-end">
-        <img className="mx-auto" src={ForgotPasswordImage} />
-        <span className="px-10 py-5 flex flex-col">
-          <p className="text-white text-[30px] font-bold">Forgot Password?</p>
-          <p className="text-gray-300 text-sm">
-            Register & get started with Awud.
-          </p>
+        <img className="mx-auto" src={CreatePinImage} />
+        <span className="px-10 pb-5 flex flex-col">
+          <p className="text-white text-[30px] font-bold">New Pin</p>
+          <p className="text-gray-300 text-sm">Enter your new pin number</p>
         </span>
       </div>
       <form
         onSubmit={onSubmit}
-        className="w-full h-1/2 flex justify-between flex-col pt-5 px-10 pb-5"
+        className="w-full h-2/3 flex justify-between flex-col pt-5 px-10 pb-5"
       >
-        <Input
-          label="Phone Number"
-          {...register("phoneNumber")}
-          placeholder="Enter Phone Number"
-          errorMessage={errors.phoneNumber?.message}
-        />
+        <span className="w-full flex justify-start gap-5 flex-col">
+          <Input
+            label="Pin"
+            {...register("password")}
+            placeholder="******"
+            maxLength={6}
+            errorMessage={errors.password?.message}
+          />
+          <Input
+            label="Confirm Pin"
+            {...register("confirmPassword")}
+            placeholder="******"
+            maxLength={6}
+            errorMessage={errors.confirmPassword?.message}
+          />
+        </span>
 
         <span className="flex justify-between items-center">
           <ArrowLeft

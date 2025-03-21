@@ -25,7 +25,7 @@ const schema = yup
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const { setSignUpRequestUserData, setHasForgottenPassword } = useAuth();
+  const { setSignUpRequestUserData } = useAuth();
 
   const {
     handleSubmit,
@@ -38,9 +38,8 @@ export default function SignUpPage() {
 
   const onSubmit = handleSubmit((values, event) => {
     event!.preventDefault();
-    setHasForgottenPassword(false);
     setSignUpRequestUserData({ ...values, device: "Telegram-mini-app" });
-    navigate("/awud-telegram-mini-app/create-pin");
+    navigate("/awud-telegram-mini-app/new-pin");
   });
 
   return (

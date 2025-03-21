@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function GetStartedPage() {
   return (
-    <div className="w-full overflow-y-scroll h-screen bg-white max-w-[500px] flex flex-col px-10 py-20 justify-between items-start gap-2">
+    <div className="w-full hide-scrollbar overflow-y-scroll h-screen bg-white max-w-[500px] flex flex-col px-10 py-20 justify-between items-start gap-2">
       <span className="flex flex-col justify-start items-center">
         <img
           alt="get Started image"
