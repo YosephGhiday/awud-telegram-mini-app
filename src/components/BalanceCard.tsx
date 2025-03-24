@@ -13,7 +13,6 @@ function AsteriskRow() {
       <Asterisk size={15} />
       <Asterisk size={15} />
       <Asterisk size={15} />
-      <Asterisk size={15} />
     </span>
   );
 }
@@ -30,7 +29,7 @@ export default function BalanceCard({ user }: BalanceCardProps) {
         <span className="w-60 h-60 bg-[#F6FBF9]  rounded-full"></span>
       </span>
       <span className="flex w-full z-10 justify-between gap-5 items-center">
-        <span className="flex flex-col  items-start  w-1/2">
+        <span className="flex flex-col z-10  items-start  w-1/2">
           <p className="text-textSecondary text-sm">Total Balance</p>
           <span className="font-extrabold text-lg flex items-center justify-between w-full text-textPrimary">
             <p className="flex gap-2">

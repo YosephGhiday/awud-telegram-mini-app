@@ -86,11 +86,15 @@ export default function DiscoverEqubsSection() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-2 items-start">
+    <div className="w-full flex flex-col gap-2 pb-25 items-start">
       <p className="text-lg text-textPrimary font-bold">Discover Equbs</p>
       <DiscoverEqubTabs onSelect={getFilteredEqubs} />
-      {equbsResponse.loading ? (
+      {equbsResponse.loading || !equbsResponse.response?.success ? (
         <DiscoverEqubsLoadingSkeleton />
+      ) : equbs.length == 0 ? (
+        <div className="w-full flex p-10 items-center justify-center">
+          <p className="text-md text-textSecondary">No equbs found.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-2 w-full gap-4">
           {equbs.map((equb, index) => (

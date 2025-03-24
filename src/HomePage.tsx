@@ -7,6 +7,7 @@ import useResponse from "./services/useResponse";
 import { useState, useEffect } from "react";
 import DiscoverEqubsSection from "./features/equbs/views/components/DiscoverEqubsSection";
 import BannerResponse from "./features/ads/data/BannerResponse";
+import MyEqubsSection from "./features/equbs/views/components/MyEqubsSection";
 
 export default function HomePage() {
   const [ads, setAds] = useState<BannerResponse[]>([]);
@@ -33,6 +34,7 @@ export default function HomePage() {
       <div className="w-full flex flex-col gap-5 px-5">
         <BalanceCard user={userDetail!} />
         <AdSlider loading={adsResponse.loading} ads={ads} />
+        <MyEqubsSection />
         <DiscoverEqubsSection />
       </div>
     </DefaultLayout>

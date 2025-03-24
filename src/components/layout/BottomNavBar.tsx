@@ -10,7 +10,7 @@ export default function BottomNavBar() {
   return (
     <div className="w-full z-30 fixed bottom-0 right-0 bg-white flex items-center justify-between py-[10px] px-[28px]">
       <Link
-        to="/awud-telegram-mini-app/home"
+        to="/awud-telegram-mini-app/"
         className={`flex  px-[9px] py-[6px] rounded-md ${
           checkLocation("/awud-telegram-mini-app/")
             ? "text-white bg-primary"
@@ -21,7 +21,7 @@ export default function BottomNavBar() {
         <p className="font-bold text-sm">Home</p>
       </Link>
       <Link
-        to="/awud-telegram-mini-app/"
+        to="/awud-telegram-mini-app/equbs"
         className={`flex  px-[9px] py-[6px] rounded-md ${
           checkLocation("/awud-telegram-mini-app/equbs")
             ? "text-white bg-primary"
@@ -30,6 +30,18 @@ export default function BottomNavBar() {
       >
         <Store size={30} />
         <p className="font-bold text-sm">Equbs</p>
+      </Link>
+
+      <Link
+        to="/awud-telegram-mini-app/savings"
+        className={`flex  px-[9px] py-[6px] rounded-md ${
+          checkLocation("/awud-telegram-mini-app/savings")
+            ? "text-white bg-primary"
+            : "text-textPrimary"
+        } flex-col items-center justify-center"`}
+      >
+        <Wallet size={30} />
+        <p className="font-bold text-sm">Savings</p>
       </Link>
       <Link
         to="/awud-telegram-mini-app/"
@@ -41,17 +53,6 @@ export default function BottomNavBar() {
       >
         <Banknote size={30} />
         <p className="font-bold text-sm">Transactions</p>
-      </Link>
-      <Link
-        to="/awud-telegram-mini-app/"
-        className={`flex  px-[9px] py-[6px] rounded-md ${
-          checkLocation("/awud-telegram-mini-app/savings")
-            ? "text-white bg-primary"
-            : "text-textPrimary"
-        } flex-col items-center justify-center"`}
-      >
-        <Wallet size={30} />
-        <p className="font-bold text-sm">Savings</p>
       </Link>
     </div>
   );

@@ -13,6 +13,8 @@ import ForgotPasswordCreatePinPage from "@/features/auth/views/pages/ForgotPassw
 import ForgotPasswordConfirmationPage from "@/features/auth/views/pages/ForgotPasswordConfimationPage";
 import SignUpConfirmationPage from "@/features/auth/views/pages/SignUpConfirmationPage";
 import NewPinPage from "@/features/auth/views/pages/NewPinPage";
+import EqubsPage from "@/features/equbs/views/pages/EqubsPage";
+import SavingsPage from "@/features/savings/views/pages/SavingsPage";
 
 import HomePage from "@/HomePage";
 
@@ -91,6 +93,16 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/contact-us",
     element: ContactUsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/equbs",
+    element: EqubsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/savings",
+    element: SavingsPage,
     isProtected: true,
   },
 ];
