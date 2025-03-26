@@ -19,3 +19,12 @@ export interface Saving {
   createdAt: Date;
   repaidEvery?: string;
 }
+
+export interface AddSaving {
+  repayedEvery: string;
+  minimumBalance: number;
+  maximumBalance: number;
+  name: string;
+  clientId: string;
+  savingPeriod: string;
+}

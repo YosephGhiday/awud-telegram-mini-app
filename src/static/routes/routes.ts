@@ -7,14 +7,17 @@ import SuccessfullyChangedPasswordPage from "@/features/auth/views/pages/Success
 import SettingsPage from "@/features/auth/views/pages/SettingsPage";
 import ChangePinPage from "@/features/auth/views/pages/ChangePinPage";
 import ProfileDetailPage from "@/features/auth/views/pages/ProfileDetailPage";
-import TermsPage from "@/components/pages/Termspage";
+import TermsPage from "@/components/pages/TermsPage";
 import ContactUsPage from "@/components/pages/ContactUsPage";
 import ForgotPasswordCreatePinPage from "@/features/auth/views/pages/ForgotPasswordCreatePinPage";
 import ForgotPasswordConfirmationPage from "@/features/auth/views/pages/ForgotPasswordConfimationPage";
 import SignUpConfirmationPage from "@/features/auth/views/pages/SignUpConfirmationPage";
 import NewPinPage from "@/features/auth/views/pages/NewPinPage";
 import EqubsPage from "@/features/equbs/views/pages/EqubsPage";
+import JoinSavingsPage from "@/features/savings/views/pages/JoinSavingsPage";
 import SavingsPage from "@/features/savings/views/pages/SavingsPage";
+import StartSavingPage from "@/features/savings/views/pages/StartSavingPage";
+import SavingsRulesAndRegulationsPage from "@/features/savings/views/pages/SavingsRulesAndRegulationsPage";
 
 import HomePage from "@/HomePage";
 
@@ -103,6 +106,21 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/savings",
     element: SavingsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/join-savings/:saving",
+    element: JoinSavingsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/savings-rules-and-regulations",
+    element: SavingsRulesAndRegulationsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/start-saving",
+    element: StartSavingPage,
     isProtected: true,
   },
 ];

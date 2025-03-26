@@ -17,7 +17,7 @@ export default function SavingsPage() {
   const [selectedTab, setSelectedTab] = useState<string>("CURRENT");
 
   const getMySavings = async () => {
-    savingsResponse.handler(() => savingsApi.getMyEqubs(), {
+    savingsResponse.handler(() => savingsApi.getMySavings(), {
       success(data) {
         setBalance(Number(data.balance));
         setMySavings(data.savings);
