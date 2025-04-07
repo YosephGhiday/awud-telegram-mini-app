@@ -44,7 +44,7 @@ export default function BottomNavBar() {
         <p className="font-bold text-sm">Savings</p>
       </Link>
       <Link
-        to="/awud-telegram-mini-app/"
+        to="/awud-telegram-mini-app/transactions"
         className={`flex  px-[9px] py-[6px] rounded-md ${
           checkLocation("/awud-telegram-mini-app/transactions")
             ? "text-white bg-primary"

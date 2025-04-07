@@ -6,7 +6,7 @@ export default function RenderModal() {
   return (
     <div>
       {modals != undefined && modals?.length > 0 ? (
-        <div className="fixed inset-0 bg-black bg-opacity-35 z-[10001] w-full h-full">
+        <div className="fixed inset-0 bg-black/35 z-[10001] w-full h-full">
           {modals?.map((modal, index) => {
             return (
               <div
