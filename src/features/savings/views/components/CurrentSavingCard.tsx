@@ -1,14 +1,20 @@
 import { Saving } from "../../data/interface";
 import { Wallet } from "lucide-react";
 import ProgressIndicator from "@/components/ProgressIndicator";
+import { useNavigate } from "react-router-dom";
 
 interface CurrentSavingCardProps {
   saving: Saving;
 }
 
 export default function CurrentSavingCard({ saving }: CurrentSavingCardProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-white rounded-md shadow-md p-2 gap-1 flex flex-col">
+    <div
+      onClick={() => navigate(`/awud-telegram-mini-app/saving/${saving.id}`)}
+      className="bg-white rounded-md shadow-md p-2 gap-1 flex flex-col"
+    >
       <Wallet className="w-10 h-10 p-2.5 rounded-full  text-textPrimary bg-gray-100" />
       <p className="text-textPrimary font-bold mb-5">{saving.name}</p>
       <ProgressIndicator

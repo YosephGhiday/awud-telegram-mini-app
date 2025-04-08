@@ -19,6 +19,7 @@ import SavingsPage from "@/features/savings/views/pages/SavingsPage";
 import StartSavingPage from "@/features/savings/views/pages/StartSavingPage";
 import SavingsRulesAndRegulationsPage from "@/features/savings/views/pages/SavingsRulesAndRegulationsPage";
 import TransactionsPage from "@/features/transactions/views/pages/TransactionsPage";
+import MySavingDetailPage from "@/features/savings/views/pages/MySavingDetailPage";
 
 import HomePage from "@/HomePage";
 
@@ -127,6 +128,11 @@ const routes: PageRoute[] = [
   {
     path: "/awud-telegram-mini-app/transactions",
     element: TransactionsPage,
+    isProtected: true,
+  },
+  {
+    path: "/awud-telegram-mini-app/saving/:id",
+    element: MySavingDetailPage,
     isProtected: true,
   },
 ];

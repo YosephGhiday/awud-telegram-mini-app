@@ -1,7 +1,5 @@
 import ApiService from "../../../services/ApiServices";
-// import {
-//   Saving,
-// } from "../data/interface";
+import { Saving, SavingTransaction } from "../data/interface";
 import { SavingsResponse } from "../data/SavingsResponse";
 
 export default class SavingsApi {
@@ -19,6 +17,20 @@ export default class SavingsApi {
     const response = await this.api
       .addAuthorizationHeader()
       .post(`${this.extraUrl}/self`, data);
+    return response;
+  }
+
+  async getOneSaving(id: string) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .get<Saving>(`${this.extraUrl}/${id}`);
+    return response;
+  }
+
+  async getSavingTransactions(id: string) {
+    const response = await this.api
+      .addAuthorizationHeader()
+      .get<SavingTransaction[]>(`savings/transactions/account/${id}`);
     return response;
   }
 }
